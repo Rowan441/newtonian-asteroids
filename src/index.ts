@@ -1,19 +1,8 @@
-import { Application, Sprite } from 'pixi.js'
+import { Manager } from "./recipes/Manager";
+import { LoaderScene } from "./scenes/LoaderScene";
 
-const app = new Application({
-	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
-	resolution: window.devicePixelRatio || 1,
-	autoDensity: true,
-	backgroundColor: 0x6495ed,
-	width: 640,
-	height: 480
-});
+Manager.initialize(640, 480, 0x0c0c0c);
 
-const clampy: Sprite = Sprite.from("clampy.png");
-
-clampy.anchor.set(0.5);
-
-clampy.x = app.screen.width / 2;
-clampy.y = app.screen.height / 2;
-
-app.stage.addChild(clampy);
+// We no longer need to tell the scene the size because we can ask Manager!
+const loady: LoaderScene = new LoaderScene();
+Manager.changeScene(loady);
